@@ -12,6 +12,8 @@
         <input type="text" name="mail">
         <p>■パスワード</p>
         <input type="password" name="pass">
+        <p>■ユーザーID</p>
+        <input type="text" name="name">
         <input type="submit" name="submit" value="ログインする">
     </form>
 </body>

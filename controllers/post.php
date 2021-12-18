@@ -12,8 +12,10 @@ if(isset($_POST["title"]) && isset($_POST["lat"]) && isset($_POST["lng"])){
         "lat" => $_POST["lat"],
         "lng" => $_POST["lng"],
         "text" => $_POST["text"],
+        "name" => $_SESSION["name"],
         "user" => $_SESSION["MAIL"]
     ];
+    print_r ($data);
     if(postToMap($data)){
         header('Location: ../map.php');
         exit;

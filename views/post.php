@@ -11,9 +11,9 @@
     <p>■地点の名称</p>
     <input type="text" name="title">
     <p>■緯度</p>
-    <input type="number" step="0.0000000000000001" name="lat">
+    <input type="number" step="0.000000000000000001" name="lat">
     <p>■経度</p>
-    <input type="number" step="0.0000000000000001" name="lng">
+    <input type="number" step="0.000000000000000001" name="lng">
     <p>■コメント/説明</p>
     <textarea name="text" cols="30" rows="10"></textarea>
     <input type="submit" name="submit" value="登録する">

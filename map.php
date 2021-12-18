@@ -5,17 +5,12 @@ require_once "models/map.php";
 if($statement = getUserPost()){
   $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $num = count($rows);
-  echo $num;
-
-  // foreach ($rows as $row){
-  //    echo $row["title"];
-
-  // }
-
-print_r($rows);
-//jsonエンコード
 $rows_json = json_encode($rows);
+}
+
+if($statement = getCluePost()){
+  $cRows = $statement->fetchAll(PDO::FETCH_ASSOC);
+  $cRows_json = json_encode($cRows); 
 }
   ?>
 
@@ -73,17 +68,24 @@ function initialize() {
   let currentinfoWindow = null;
   let comp1 ="<div style='display: flex;'><div><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><div><img src=";
 
-    //jsondeコード
+    //jsonデコード
     let param = JSON.parse('<?php echo $rows_json; ?>');  
     console.log(param);
 
+    let cParam = JSON.parse('<?php echo $cRows_json; ?>');
+    console.log(cParam);
+    
     for(i=0; i<param.length;i++){
-      userContent.push("<h3>" + param[i]["title"] + "</h3><p>" + param[i]["text"] + "</p>");
+      userContent.push("<h3>" + param[i]["title"] + "</h3><p>" + param[i]["text"] + "</p>" + "<p>" + param[i]["name"] + "による投稿" + "</p>");
 
       let userMarkerLatLng = new google.maps.LatLng({lat: Number(param[i]["lat"]), lng: Number(param[i]['lng'])});
     userMarker[i] = new google.maps.Marker({
       position: userMarkerLatLng,
-      map: map
+      map: map,
+      icon: {
+        url: 'img/pin.png',
+        scaledSize: new google.maps.Size(40, 40)
+      }
     });
     userInfowindow[i] = new google.maps.InfoWindow({
       content: String(userContent[i])
@@ -103,41 +105,26 @@ function initialize() {
 
 
       })
-    };
+    }
   //一つめのキーをfor文で回して、展開する
 
 //次回：既存のAPIの書き方に追従して、自動化できる、ようにプログラミングする
 
-  for (i = 0; i < contents.length; i++) {
-    content_html.push("<div><h3>" + contents[i][0] + "</h3>"+comp1 + contents[i][1] + " style='width:100px'></div></div><p>"+ contents[i][2]+"<br><a href="+contents[i][3]+">ブログ記事</a></p></div>");
-  }
-
-  let map_data = [
-    {
-      lat: 37.70379604279255,
-      lng:  138.8056766046995,
-      content: content_html[0]
-    },
-    {
-      lat:37.423184275642704,
-      lng: 138.92955508434426,
-      content: content_html[1]
-    },
-    {
-      lat: 37.03791861698117,
-      lng: 138.79683947489153,
-      content: content_html[2]
-    }
-  ];
+ 
 
 
-  for(i=0; i<map_data.length; i++){
-    let markerLatLng = new google.maps.LatLng({lat: map_data[i]['lat'], lng: map_data[i]['lng']});
+
+  for(i=0; i<cParam.length; i++){
+    let markerLatLng = new google.maps.LatLng({lat: Number(cParam[i]['lat']), lng: Number(cParam[i]['lng'])});
     marker[i] = new google.maps.Marker({
       position: markerLatLng,
-      map: map
+      map: map,
+      icon: {
+        url: 'img/place.png',
+        scaledSize: new google.maps.Size(40, 40)
+      }
     });
-    let markerContents = map_data[i]['content'];
+    let markerContents = "<div><h3>" + cParam[i]["title"] + "</h3>"+ comp1 + cParam[i]["img"] + " style='width:100px'></div></div><p>"+ cParam[i]["content"]+"<br><a href="+cParam[i]["link"]+">ブログ記事</a></p></div>";
     infowindow[i] = new google.maps.InfoWindow({
       content: markerContents
     });
@@ -159,7 +146,7 @@ function initialize() {
 
 
       })
-    };
+    }
 
 
 }

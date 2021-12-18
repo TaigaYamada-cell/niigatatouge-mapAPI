@@ -11,13 +11,20 @@ function connect(){
     }
 }
 
+function escape($val){
+    return htmlspecialchars($val, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+
 function registerUser(array $data){
-//DB接続
-    $pdo = connect();
-        
-    
-//パスワードのハッシュ化
-    $hashedPass = password_hash($data["pass"], PASSWORD_DEFAULT);
+    //空欄チェック
+    if(trim($data["mail"]) === '' || trim($data["name"]) === ''){
+        echo "メールアドレスまたはユーザーIDは必須項目です。";
+        return;
+    }
+
+    $pdo = connect();//DB接続
+
+    $hashedPass = password_hash($data["pass"], PASSWORD_DEFAULT);//パスワードのハッシュ化
 
     
 
@@ -55,17 +62,23 @@ function findUser(array $data){
     }
     
     if(password_verify($data["pass"], $row["password"])){
-        $_SESSION["MAIL"] = $row["mail"];
+        $_SESSION["MAIL"] = $data["mail"];
+        $_SESSION["name"] = $data["name"];
+    } else{
+        echo "メールアドレスまたはパスワードが違います";
+        return;
     }
+    
     return true;
 }
 
 function postToMap(array $data){
     $pdo = connect();
     try{
-        $statement = $pdo->prepare('INSERT INTO userpost(created, user, title, lat, lng, text)
-        VALUES (CURRENT_TIMESTAMP, :user, :title, :lat, :lng, :text)');
+        $statement = $pdo->prepare('INSERT INTO userpost(created, user, name, title, lat, lng, text)
+        VALUES (CURRENT_TIMESTAMP, :user, :name, :title, :lat, :lng, :text)');
         $statement->bindValue(':user', $data["user"], PDO::PARAM_STR);
+        $statement->bindValue(':name', $data["name"], PDO::PARAM_STR);
         $statement->bindValue(':title', $data["title"], PDO::PARAM_STR);
         $statement->bindValue(':lat', $data["lat"], PDO::PARAM_STR);
         $statement->bindValue(':lng', $data["lng"], PDO::PARAM_STR);
@@ -73,6 +86,7 @@ function postToMap(array $data){
         $statement->execute();
     } catch(PDOException $e){
         $e->getMessage();
+        return;
     }
     return true;
 }
