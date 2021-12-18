@@ -59,4 +59,22 @@ function findUser(array $data){
     }
     return true;
 }
+
+function postToMap(array $data){
+    $pdo = connect();
+    try{
+        $statement = $pdo->prepare('INSERT INTO userpost(created, user, title, lat, lng, text)
+        VALUES (CURRENT_TIMESTAMP, :user, :title, :lat, :lng, :text)');
+        $statement->bindValue(':user', $data["user"], PDO::PARAM_STR);
+        $statement->bindValue(':title', $data["title"], PDO::PARAM_STR);
+        $statement->bindValue(':lat', $data["lat"], PDO::PARAM_STR);
+        $statement->bindValue(':lng', $data["lng"], PDO::PARAM_STR);
+        $statement->bindValue(':text', $data["text"], PDO::PARAM_STR);
+        $statement->execute();
+    } catch(PDOException $e){
+        $e->getMessage();
+    }
+    return true;
+}
+
 ?>
