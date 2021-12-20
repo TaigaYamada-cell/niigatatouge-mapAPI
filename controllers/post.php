@@ -13,7 +13,8 @@ if(isset($_POST["title"]) && isset($_POST["lat"]) && isset($_POST["lng"])){
         "lng" => $_POST["lng"],
         "text" => $_POST["text"],
         "name" => $_SESSION["name"],
-        "user" => $_SESSION["MAIL"]
+        "user" => $_SESSION["MAIL"],
+        "type" => $_POST["type"]
     ];
     print_r ($data);
     if(postToMap($data)){

@@ -22,3 +22,4 @@ function getCluePost(){
     }
     return $statement;
 }
+

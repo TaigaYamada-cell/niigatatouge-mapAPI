@@ -16,6 +16,10 @@
     <input type="number" step="0.000000000000000001" name="lng">
     <p>■コメント/説明</p>
     <textarea name="text" cols="30" rows="10"></textarea>
+    <input type="radio" value="road" name="type" checked>
+    <label for="road">Road</label>
+    <input type="radio" value="spot" name="type">
+    <label for="spot">Spot</label>
     <input type="submit" name="submit" value="登録する">
     </form>
 </body>

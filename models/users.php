@@ -75,14 +75,15 @@ function findUser(array $data){
 function postToMap(array $data){
     $pdo = connect();
     try{
-        $statement = $pdo->prepare('INSERT INTO userpost(created, user, name, title, lat, lng, text)
-        VALUES (CURRENT_TIMESTAMP, :user, :name, :title, :lat, :lng, :text)');
+        $statement = $pdo->prepare('INSERT INTO userpost(created, user, name, title, lat, lng, text, type)
+        VALUES (CURRENT_TIMESTAMP, :user, :name, :title, :lat, :lng, :text, :type)');
         $statement->bindValue(':user', $data["user"], PDO::PARAM_STR);
         $statement->bindValue(':name', $data["name"], PDO::PARAM_STR);
         $statement->bindValue(':title', $data["title"], PDO::PARAM_STR);
         $statement->bindValue(':lat', $data["lat"], PDO::PARAM_STR);
         $statement->bindValue(':lng', $data["lng"], PDO::PARAM_STR);
         $statement->bindValue(':text', $data["text"], PDO::PARAM_STR);
+        $statement->bindValue(':type', $data["type"], PDO::PARAM_STR);
         $statement->execute();
     } catch(PDOException $e){
         $e->getMessage();
