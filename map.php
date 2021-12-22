@@ -12,6 +12,11 @@ if($statement = getCluePost()){
   $cRows = $statement->fetchAll(PDO::FETCH_ASSOC);
   $cRows_json = json_encode($cRows); 
 }
+
+$data = $_GET["search-title"];
+$row = search($data);
+$row_json = json_encode($row);
+
   ?>
 
 
@@ -50,6 +55,8 @@ function initialize() {
     let cParam = JSON.parse('<?php echo $cRows_json; ?>');
     console.log(cParam);
     
+    let rowParam = JSON.parse('<?php echo $row_json; ?>');
+
     for(i=0; i<param.length;i++){
       userContent.push("<h3>" + param[i]["title"] + "</h3><p>" + param[i]["text"] + "</p>" + "<p>" + param[i]["name"] + "による投稿" + "</p>");
       let imgPath;
@@ -81,11 +88,11 @@ function initialize() {
       userInfowindow[i].open(map, userMarker[i]);
       currentinfoWindow = userInfowindow[i];
       map.setZoom(14);
-
-
       })
     }
 
+    
+  
   for(i=0; i<cParam.length; i++){
     let markerLatLng = new google.maps.LatLng({lat: Number(cParam[i]['lat']), lng: Number(cParam[i]['lng'])});
     marker[i] = new google.maps.Marker({
@@ -103,24 +110,27 @@ function initialize() {
     
     markerEvent(i);
   }
-
-
-
-
   function markerEvent(i) {
-    marker[i].addListener('click', function(){
-      if(currentinfoWindow){
-        currentinfoWindow.close();
+      marker[i].addListener('click', function(){
+        if(currentinfoWindow){
+          currentinfoWindow.close();
+        }
+        infowindow[i].open(map, marker[i]);
+        currentinfoWindow = infowindow[i];
+        map.setZoom(14);
+        })
       }
-      infowindow[i].open(map, marker[i]);
-      currentinfoWindow = infowindow[i];
-      map.setZoom(14);
+
+  let animeOpt = {
+          animation: google.maps.Animation.BOUNCE,
+        };
+  let e = rowParam[0]["id"] -1;
+  console.log(rowParam[0]["id"]);
+  marker[e].setOptions(animeOpt);
 
 
-      })
-    }
-
-
+ 
+  
 }
 
  
@@ -129,17 +139,24 @@ function initialize() {
 
 
 
-    <title>Google Maps API サンプル</title>
+  <title>新潟峠</title>
   </head>
 
   <body onload="initialize()">
+  <h1>新潟峠</h1>
+  <h4>■検索</h4>
+  <form action="map.php" method="GET">
+    <input type="text" name="search-title" value="">
+    <input type="submit">
+    </form>
+    <?php if(isset($_GET["search-title"])){
+    echo "<p>".$_GET['search-title']."の検索結果です</p>";
+    }?>
+  
 
 
-
-
-
-  <p>Google Maps APIを使ったサンプルです。</p>
   <a href="controllers/post.php">投稿はこちらから！</a>
+
 
 <div id="map" style="width:1000px; height:600px"></div>
 
