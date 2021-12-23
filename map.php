@@ -17,6 +17,7 @@ $data = $_GET["search-title"];
 $row = search($data);
 $row_json = json_encode($row);
 
+//todo:いいね機能とItta機能
   ?>
 
 
@@ -24,6 +25,10 @@ $row_json = json_encode($row);
 <html lang="ja">
   <head>
     <meta charset="utf-8"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/map.css">
+    <script src="css/map.js"></script>
+    
 <script>
     var map;
 
@@ -143,23 +148,10 @@ function initialize() {
   </head>
 
   <body onload="initialize()">
-  <h1>新潟峠</h1>
-  <h4>■検索</h4>
-  <form action="map.php" method="GET">
-    <input type="text" name="search-title" value="">
-    <input type="submit">
-    </form>
-    <?php if(isset($_GET["search-title"])){
-    echo "<p>".$_GET['search-title']."の検索結果です</p>";
-    }?>
-  
 
+<?php require("views/header.html");?>
 
-  <a href="controllers/post.php">投稿はこちらから！</a>
-
-
-<div id="map" style="width:1000px; height:600px"></div>
-
+<div id="map" style="height: 100vh;"></div>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfxvP5VnzlIsgUG-3ZM1YhU2liLKVau64&callback=initMap">
     </script>
