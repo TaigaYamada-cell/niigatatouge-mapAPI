@@ -1,34 +1,3 @@
-<?php
-require_once "models/map.php";
-
-
-if($statement = getUserPost()){
-  $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-$rows_json = json_encode($rows);
-}
-
-if($statement = getCluePost()){
-  $cRows = $statement->fetchAll(PDO::FETCH_ASSOC);
-  $cRows_json = json_encode($cRows); 
-}
-
-$data = $_GET["search-title"];
-$row = search($data);
-$row_json = json_encode($row);
-
-//todo:いいね機能とItta機能
-  ?>
-
-
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8"> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/map.css">
-    <script src="css/map.js"></script>
-    
 <script>
     var map;
 
@@ -51,7 +20,7 @@ function initialize() {
   let userMapdata = [];
   let userCurrentinfowindow = null;
   let currentinfoWindow = null;
-  let comp1 ="<div style='display: flex;'><div><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><img src='img/favourite.png' style='width:20px;'><div><img src=";
+  let comp1 ="<div style='display: flex;'><div><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><div><img src=";
 
     //jsonデコード
     let param = JSON.parse('<?php echo $rows_json; ?>');  
@@ -66,9 +35,9 @@ function initialize() {
       userContent.push("<h3>" + param[i]["title"] + "</h3><p>" + param[i]["text"] + "</p>" + "<p>" + param[i]["name"] + "による投稿" + "</p>");
       let imgPath;
       if (param[i]["type"] === "road"){
-        imgPath = "img/pin.png";
+        imgPath = "../img/pin.png";
       } else {
-        imgPath = "img/google-maps.png"
+        imgPath = "../img/google-maps.png"
       }
     let userMarkerLatLng = new google.maps.LatLng({lat: Number(param[i]["lat"]), lng: Number(param[i]['lng'])});
     userMarker[i] = new google.maps.Marker({
@@ -104,7 +73,7 @@ function initialize() {
       position: markerLatLng,
       map: map,
       icon: {
-        url: "img/place.png",
+        url: "../img/place.png",
         scaledSize: new google.maps.Size(40, 40)
       }
     });
@@ -140,22 +109,3 @@ function initialize() {
 
  
 </script>
-
-
-
-
-  <title>新潟峠</title>
-  </head>
-
-  <body onload="initialize()">
-
-<?php require("views/header.html");?>
-
-<div id="map" style="height: 100vh;"></div>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfxvP5VnzlIsgUG-3ZM1YhU2liLKVau64&callback=initMap">
-    </script>
-    
- 
-</body>
-</html>
