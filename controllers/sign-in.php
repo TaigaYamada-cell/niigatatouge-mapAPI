@@ -9,7 +9,7 @@ if(isset($_POST["mail"]) && isset($_POST["pass"])){
         "name" => $_POST["name"]
     ];
     if(findUser($data)){
-        header('Location: ../map.php');
+        header('Location: map.php');
         exit;
     }
 }
