@@ -17,6 +17,8 @@ function initialize() {
   let userContent = [];
   let infowindow = [];
   let userInfowindow = [];
+  let nameWindow = [];
+  let uNameWindow = [];
   let userMapdata = [];
   let userCurrentinfowindow = null;
   let currentinfoWindow = null;
@@ -35,9 +37,9 @@ function initialize() {
       userContent.push("<h3>" + param[i]["title"] + "</h3><p>" + param[i]["text"] + "</p>" + "<p>" + param[i]["name"] + "による投稿" + "</p>");
       let imgPath;
       if (param[i]["type"] === "road"){
-        imgPath = "../img/pin.png";
+        imgPath = "../img/pin(2).png";
       } else {
-        imgPath = "../img/google-maps.png"
+        imgPath = "../img/pin(1).png"
       }
     let userMarkerLatLng = new google.maps.LatLng({lat: Number(param[i]["lat"]), lng: Number(param[i]['lng'])});
     userMarker[i] = new google.maps.Marker({
@@ -51,6 +53,12 @@ function initialize() {
     userInfowindow[i] = new google.maps.InfoWindow({
       content: String(userContent[i])
     });
+
+    let uNameContents = param[i]["title"];
+    uNameWindow[i] = new google.maps.InfoWindow({
+      content: uNameContents
+    });
+
     userMarkerEvent(i);
     }
 
@@ -63,6 +71,14 @@ function initialize() {
       currentinfoWindow = userInfowindow[i];
       map.setZoom(14);
       })
+
+      userMarker[i].addListener('mouseover', function(){
+        if(currentinfoWindow){
+          currentinfoWindow.close();
+        }
+        uNameWindow[i].open(map, userMarker[i]);
+        currentinfoWindow = uNameWindow[i];
+      })
     }
 
     
@@ -73,7 +89,7 @@ function initialize() {
       position: markerLatLng,
       map: map,
       icon: {
-        url: "../img/place.png",
+        url: "../img/pin(2).png",
         scaledSize: new google.maps.Size(40, 40)
       }
     });
@@ -81,9 +97,15 @@ function initialize() {
     infowindow[i] = new google.maps.InfoWindow({
       content: markerContents
     });
+
+    let nameContents = cParam[i]["title"];
+    nameWindow[i] = new google.maps.InfoWindow({
+      content: nameContents
+    });
     
     markerEvent(i);
   }
+
   function markerEvent(i) {
       marker[i].addListener('click', function(){
         if(currentinfoWindow){
@@ -93,6 +115,15 @@ function initialize() {
         currentinfoWindow = infowindow[i];
         map.setZoom(14);
         })
+
+      marker[i].addListener('mouseover', function(){
+        if(currentinfoWindow){
+          currentinfoWindow.close();
+        }
+        nameWindow[i].open(map, marker[i]);
+        currentinfoWindow = nameWindow[i];
+      })  
+
       }
 
   let animeOpt = {
