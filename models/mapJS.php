@@ -26,10 +26,8 @@ function initialize() {
 
     //jsonデコード
     let param = JSON.parse('<?php echo $rows_json; ?>');  
-    console.log(param);
 
     let cParam = JSON.parse('<?php echo $cRows_json; ?>');
-    console.log(cParam);
     
     let rowParam = JSON.parse('<?php echo $row_json; ?>');
 
@@ -126,16 +124,18 @@ function initialize() {
 
       }
 
+
+let checkNum = rowParam.length;
+if(checkNum == 1){
   let animeOpt = {
           animation: google.maps.Animation.BOUNCE,
         };
   let e = rowParam[0]["id"] -1;
-  console.log(rowParam[0]["id"]);
   marker[e].setOptions(animeOpt);
 
 
- 
-  
+ }
+
 }
 
  

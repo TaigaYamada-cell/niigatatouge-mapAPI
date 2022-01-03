@@ -26,8 +26,9 @@ function getCluePost(){
 function search($data){
     $pdo = connect();
     try{
+        
         $statement = $pdo->prepare("SELECT * FROM cluepost WHERE title LIKE :title");
-        $statement->bindValue(':title', escape($data), PDO::PARAM_STR);
+        $statement->bindValue(':title', '%'.escape($data).'%', PDO::PARAM_STR);
         $statement->execute();
         $row = $statement->fetchAll(PDO::FETCH_ASSOC);
     } catch(PDOException $e){
