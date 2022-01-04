@@ -5,7 +5,7 @@ if(!isset($_SESSION["MAIL"])){
     echo "投稿するにはログインが必要です。";
     echo "ログインは<a href='sign-in.php'>こちら</a>";
 }
-
+print_r($_SESSION);
 if(isset($_POST["title"]) && isset($_POST["lat"]) && isset($_POST["lng"])){
     $data = [
         "title" => $_POST["title"],
@@ -18,7 +18,7 @@ if(isset($_POST["title"]) && isset($_POST["lat"]) && isset($_POST["lng"])){
     ];
     print_r ($data);
     if(postToMap($data)){
-        header('Location: ../map.php');
+        header('Location: map.php');
         exit;
     }
 }

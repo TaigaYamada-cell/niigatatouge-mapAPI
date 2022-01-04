@@ -57,6 +57,7 @@ function findUser(array $data){
     $statement->bindvalue(':mail', $data["mail"], PDO::PARAM_STR);
     $statement->execute();
     $row = $statement->fetch(PDO::FETCH_ASSOC);
+    print_r($row);
     } catch (PDOException $e){
         $e->getMessage();
     }

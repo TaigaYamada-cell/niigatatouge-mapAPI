@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
     <title>会員登録-新潟峠</title>
 </head>
 <body>
@@ -16,15 +17,15 @@
     <div style="text-align: center;">
         <form action="../controllers/sign-up.php" method="POST">
             <div class="mt-3">
-                <label class="form-label">ユーザーID</label>
+                <label class="form-label">ユーザーID <span class="required">必須</span></label>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="mt-3">
-                <label class="form-label">メールアドレス</label>
+                <label class="form-label">メールアドレス <span class="required">必須</span></label>
                 <input type="mail" name="mail" class="form-control">
             </div>
             <div class="mt-3">
-                <label class="form-label">パスワード</label>
+                <label class="form-label">パスワード <span class="required">必須</span></label>
                 <input type="password" name="pass" class="form-control">
             </div>
             <div class="mt-3">

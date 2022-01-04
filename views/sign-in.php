@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="../css/style.css">
     <title>サインイン</title>
 </head>
 <body>
@@ -14,17 +14,17 @@
     <div style="width: 100%; text-align: center;">
         <a href="../controllers/map.php"><img src="../img/logo.jpg" alt="logo" class="img-fluid rounded-circle w-25"></a> 
     </div>
-        <div class="mb-3 mt-3" style="text-align: center;">
-            <label for="id" class="form-label">ユーザーID</label>
+    <form action="../controllers/sign-in.php" method="POST">
+    <div class="mb-3 mt-3" style="text-align: center;">
+            <label for="id" class="form-label">ユーザーID <span class="required">必須</span></label>
             <input type="text" name="name" id="id" class="form-control">
         </div>
-    <form action="../controllers/sign-in.php" method="POST">
         <div class="mb-3" style="text-align: center;">
-            <label for="mail" class="form-label">メールアドレス</label>
+            <label for="mail" class="form-label">メールアドレス <span class="required">必須</span></label>
             <input type="text" class="form-control" name="mail" id="mail">
         </div>
         <div class="mb-3" style="text-align: center;">
-            <label for="pass" class="form-label">パスワード</label>
+            <label for="pass" class="form-label">パスワード <span class="required">必須</span></label>
             <input type="password" name="pass" id="pass" class="form-control">
         </div>
         
