@@ -13,7 +13,7 @@
             <a class="nav-link" href="../controllers/post.php">Post</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Bookmark</a>
+            <a class="nav-link" href="../controllers/comment.php">Comments</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ログイン/登録</a>
@@ -26,8 +26,12 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="text" name="search-title" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">search</button>
+          <input class="form-control me-2" type="text" name="search-title" placeholder="例,弥彦山" aria-label="Search">
+          
+          <button class="btn btn-outline-success" type="submit" name="search" id="search" onclick="showHide()">search</button>
+          <?php if(isset($_GET["search"])){
+            echo "<button class='btn btn-primary' type='submit' name='clear' id='clear'>clear</button>";
+            }; ?>          
         </form>
       </div>
     </div>

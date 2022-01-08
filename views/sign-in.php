@@ -10,12 +10,12 @@
 </head>
 <body>
 <div class="shadow-sm p-3 mb-5 bg-body rounded" style="color: #35a8aa">ログイン</div>
-<div class="container mt-2">
+<div class="container">
     <div style="width: 100%; text-align: center;">
         <a href="../controllers/map.php"><img src="../img/logo.jpg" alt="logo" class="img-fluid rounded-circle w-25"></a> 
     </div>
     <form action="../controllers/sign-in.php" method="POST">
-    <div class="mb-3 mt-3" style="text-align: center;">
+    <div class="form-group center-label" style="text-align: center;">
             <label for="id" class="form-label">ユーザーID <span class="required">必須</span></label>
             <input type="text" name="name" id="id" class="form-control">
         </div>

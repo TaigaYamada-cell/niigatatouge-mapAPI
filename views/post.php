@@ -11,29 +11,29 @@
 <?php require("header.html");?>
 <div class="container">
     <form action="post.php" method="POST">
-    <div class="mb-3">
+    <div class="form-group">
         <label for="FormControlInput1" class="form-label">地点の名称</label>
         <input type="text" name="title" class="form-control" id="FormControlInput1">
     </div>
-    <div class="mb-3">
+    <div class="form-group">
         <label for="FormControlInput2" class="form-label">緯度</label>
         <input type="number" class="form-control" id="FormControlInput2" step="0.000000000000000001" name="lat">
     </div>
-    <div class="mb-3">
+    <div class="form-group">
         <label for="FormControlInput3" class="form-label">経度</label>
         <input type="number" class="form-control" id="FormControlInput3" step="0.000000000000000001" name="lng">
     </div>
-    <div class="mb-3">
+    <div class="form-group">
         <label for="FormControlInput4" class="form-label">コメント/説明</label>
         <textarea name="text" cols="30" rows="10" class="form-control" id="FormControlInput4"></textarea>
     </div>
-    <div class="mb-3">
+    <div class="form-group">
         <div class="form-check">
-            <input type="radio" class="form-check-input" value="road" name="type" checked>
+            <input type="radio" id="road" class="form-check-input" value="road" name="type" checked>
             <label class="form-check-label" for="road">Road</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" value="spot" name="type">
+            <input class="form-check-input" id="spot" type="radio" value="spot" name="type">
             <label for="spot">Spot</label>
         </div>
     </div>

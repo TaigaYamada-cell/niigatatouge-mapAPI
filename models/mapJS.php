@@ -10,7 +10,6 @@ function initialize() {
     };
     let map = new google.maps.Map(document.getElementById("map"), opts);
 
-
   let marker= [];
   let userMarker = [];
   let content_html = [];
@@ -23,13 +22,15 @@ function initialize() {
   let userCurrentinfowindow = null;
   let currentinfoWindow = null;
   let comp1 ="<div style='display: flex;'><div><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><img src='../img/favourite.png' style='width:20px;'><div><img src=";
-
+  
     //jsonデコード
     let param = JSON.parse('<?php echo $rows_json; ?>');  
 
     let cParam = JSON.parse('<?php echo $cRows_json; ?>');
-    
+
     let rowParam = JSON.parse('<?php echo $row_json; ?>');
+
+
 
     for(i=0; i<param.length;i++){
       userContent.push("<h3>" + param[i]["title"] + "</h3><p>" + param[i]["text"] + "</p>" + "<p>" + param[i]["name"] + "による投稿" + "</p>");
@@ -79,8 +80,7 @@ function initialize() {
       })
     }
 
-    
-  
+      
   for(i=0; i<cParam.length; i++){
     let markerLatLng = new google.maps.LatLng({lat: Number(cParam[i]['lat']), lng: Number(cParam[i]['lng'])});
     marker[i] = new google.maps.Marker({
@@ -91,7 +91,8 @@ function initialize() {
         scaledSize: new google.maps.Size(40, 40)
       }
     });
-    let markerContents = "<div><h3>" + cParam[i]["title"] + "</h3>"+ comp1 + cParam[i]["img"] + " style='width:100px'></div></div><p>"+ cParam[i]["content"]+"<br><a href="+cParam[i]["link"]+">ブログ記事</a></p></div>";
+    let markerContents = "<div><div><h3>" + cParam[i]["title"] + "</h3>"+ comp1 + cParam[i]["img"] + " style='width:100px'></div></div><p>"+ cParam[i]["content"]+"<br><a href="+cParam[i]["link"]+">ブログ記事</a></div><div class='accordion' id='accordionExample'><div class='accordion-item'><h2 class='accordion-header' id='headingOne'><button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>コメント</button></h2><div id='collapseOne' class='accordion-collapse collapse' aria-labelledby='headingOne' data-bs-parent='#accordionExample'><div class='accordion-body'><div class='form-group'><form action='../controllers/map.php' method='post'><input type='hidden' name='post_id' value='" + cParam[i]["id"] + "'><label for='text'>コメント</label><input type='text' class='form-control' id='text' name='text'><input type='submit' name='submit_comment' class='form-control' value='送信する'></form></div></div></div></div>";
+
     infowindow[i] = new google.maps.InfoWindow({
       content: markerContents
     });
@@ -137,6 +138,7 @@ if(checkNum == 1){
  }
 
 }
+
 
  
 </script>
