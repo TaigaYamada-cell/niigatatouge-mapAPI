@@ -71,3 +71,4 @@ function getComment($id){
 }
 
 //googleアカウントでのログイン、投稿したコメントの削除、編集機能
+//git pushできていないよ！！！！

@@ -6,6 +6,8 @@ $comments3 = getComment(3);
 $comments4 = getComment(4);
 $comments5 = getComment(5);
 $comments6 = getComment(6);
+
+//git pushできてないよ
 ?>
 <script>
     var map;
