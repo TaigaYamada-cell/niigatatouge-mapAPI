@@ -1,3 +1,12 @@
+<?php
+//コメントを変数に格納
+$comments1 = getComment(1);
+$comments2 = getComment(2);
+$comments3 = getComment(3);
+$comments4 = getComment(4);
+$comments5 = getComment(5);
+$comments6 = getComment(6);
+?>
 <script>
     var map;
 
@@ -61,6 +70,7 @@ function initialize() {
     userMarkerEvent(i);
     }
 
+
     function userMarkerEvent(i) {
     userMarker[i].addListener('click', function(){
       if(currentinfoWindow){
@@ -71,14 +81,21 @@ function initialize() {
       map.setZoom(14);
       })
 
-      userMarker[i].addListener('mouseover', function(){
-        if(currentinfoWindow){
-          currentinfoWindow.close();
-        }
-        uNameWindow[i].open(map, userMarker[i]);
-        currentinfoWindow = uNameWindow[i];
+    userMarker[i].addListener('mouseover', function(){
+      if(currentinfoWindow){
+        currentinfoWindow.close();
+      }
+      uNameWindow[i].open(map, userMarker[i]);
+      currentinfoWindow = uNameWindow[i];
       })
+
+      userInfowindow[i].addListener("closeclick", function(){
+        map.setZoom(7.4);
+      });
+
+      
     }
+    
 
       
   for(i=0; i<cParam.length; i++){
@@ -121,8 +138,11 @@ function initialize() {
         }
         nameWindow[i].open(map, marker[i]);
         currentinfoWindow = nameWindow[i];
-      })  
+      })
 
+      infowindow[i].addListener("closeclick", function(){
+        map.setZoom(7.4);
+      });
       }
 
 

@@ -69,3 +69,5 @@ function getComment($id){
         return "コメント取得に失敗しました";
     }
 }
+
+//googleアカウントでのログイン、投稿したコメントの削除、編集機能
