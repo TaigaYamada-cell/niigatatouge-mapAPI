@@ -9,3 +9,27 @@
 .center-content{
     text-align: center;
 }
+
+div.comments{
+
+}
+
+form.comment-area{
+
+}
+
+span.author{
+    font-size: small;
+}
+
+p.comment{
+    margin-bottom: auto;
+    margin-top: 3px;
+}
+
+p.date{
+    opacity: 0.4;
+    font-size: small;
+    text-align: right;
+    border-bottom: 1px solid;
+}
