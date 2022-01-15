@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <title>会員登録-新潟峠</title>
 </head>
-<body>
+<body style="background-color: #dcdcdc;">
 <div class="shadow-sm p-3 mb-5 bg-body rounded" style="color: #35a8aa">会員登録</div>   
 <div class="container mt-2">
     <div style="width: 100%; text-align: center;">
