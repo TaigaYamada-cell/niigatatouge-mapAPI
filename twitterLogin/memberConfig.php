@@ -33,8 +33,4 @@ $objTwitterConection = new TwitterOAuth
  $_SESSION['twAccessToken']['oauth_token_secret']
  );
 
-//ユーザー情報を取得
-$objTwUserInfo = $objTwitterConection->get("account/verify_credentials");
-
-$_SESSION["name"] = $_SESSION["twAccessToken"]["screen_name"];
 

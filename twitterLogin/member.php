@@ -12,6 +12,11 @@ require_once('memberConfig.php');
 </head>
 <body>
     <h1>Twitterログイン完了！</h1>
+    <?php
+    //ユーザー情報を取得
+    $objTwUserInfo = $objTwitterConection->get("account/verify_credentials");
+    $_SESSION["name"] = $_SESSION["twAccessToken"]["screen_name"];
+?>
     <p><strong><?php echo ($_SESSION["name"]); ?></strong>でログインしました</p>
     <a href="../controllers/map.php">ホームページへ移動</a>
 </body>

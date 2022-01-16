@@ -1,5 +1,6 @@
 <?php
 require_once("../models/users.php");
+require_once("../twitterLogin/login.php");
 
 if(isset($_POST["name"]) && isset($_POST["mail"]) && isset($_POST["pass"])){
     $data = [

@@ -1,7 +1,4 @@
 <?php
-//インクルード
-require_once('../twitterLogin/memberConfig.php');
-
 require_once ('../models/map.php');
 
 ////////////////////////////////////////
