@@ -7,13 +7,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../controllers/map.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="../controllers/map.php">ホーム</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../controllers/post.php">Post</a>
+            <a class="nav-link" href="../controllers/post.php">投稿する</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../controllers/comment.php">Comments</a>
+            <a class="nav-link" href="../controllers/comment.php">コメント</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ログイン/登録</a>
@@ -23,7 +23,7 @@
                 <li><a class="dropdown-item" href="../controllers/sign-up.php">アカウント作成</a></li>
             </ul>
           <li class="nav-item">
-            <a class="nav-link" href="../question-form/post.php">contact</a>
+            <a class="nav-link" href="../question-form/post.php">お問い合わせ</a>
           </li>
         </ul>
         <form class="d-flex">
