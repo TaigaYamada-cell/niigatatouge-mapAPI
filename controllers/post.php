@@ -1,11 +1,11 @@
 <?php
 require_once("../models/users.php");
 session_start();
-if(!isset($_SESSION["MAIL"])){
+if(!isset($_SESSION["name"])){
     echo "投稿するにはログインが必要です。";
     echo "ログインは<a href='sign-in.php'>こちら</a>";
 }
-print_r($_SESSION);
+
 if(isset($_POST["title"]) && isset($_POST["lat"]) && isset($_POST["lng"])){
     $data = [
         "title" => $_POST["title"],

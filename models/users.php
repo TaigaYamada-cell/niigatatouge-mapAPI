@@ -1,5 +1,5 @@
 <?php
-function connect(){
+function connect(){  //DB接続の関数
     try{
         $pdo = new PDO('mysql:host=localhost; dbname=niigatatouge; charset=utf8mb4',
         'root', '');
@@ -15,7 +15,7 @@ function escape($val){
     return htmlspecialchars($val, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
 
-function checkDuplicate($data){
+function checkDuplicate($data){ //メールアドレスの重複チェック関数
     $pdo = connect();
     $statement = $pdo->prepare("SELECT* FROM user WHERE mail =:mail");
     $statement->bindValue(":mail", $data, PDO::PARAM_STR);
@@ -24,7 +24,7 @@ function checkDuplicate($data){
     return $row;
 }
 
-function registerUser(array $data){
+function registerUser(array $data){  //会員登録の関数
     //空欄チェック,メールアドレスチェック,パスワード文字数チェック,メールアドレス重複チェック
     if(trim($data["mail"]) === '' || trim($data["name"]) === ''){
         echo "メールアドレスまたはユーザーIDは必須項目です。";
@@ -67,12 +67,12 @@ function registerUser(array $data){
 }
 
 
-function findUser(array $data){
+function findUser(array $data){ //ログインとセッションにログイン情報を記録する関数
     //空欄チェック
     if(trim($data["mail"]) === '' || trim($data["name"]) === ''){
         echo "メールアドレスまたはユーザーIDが空欄です。";
         return;
-    }else{
+    }else{ 
         session_start();
         $pdo = connect();
         try{
@@ -97,14 +97,15 @@ function findUser(array $data){
     }
 }
 
-function postToMap(array $data){
-    if(!preg_match("/[1-9]+\.[1-9]+/", $data["lat"])){
+function postToMap(array $data){  //マップに投稿するための関数
+    //バリデーションチェック
+    if(!preg_match("/[1-9]+\.[1-9]+/", $data["lat"])){  //lat,lng値が適切であるかチェック
         echo "lat値が不正です。";
         return;
     }elseif(!preg_match("/[1-9]+\.[1-9]+/", $data["lng"])){
         echo "lng値が不正です。";
         return;
-    }else{
+    }else{ //不正でなければ、登録
         $pdo = connect();
         try{
             $statement = $pdo->prepare('INSERT INTO userpost(created, user, name, title, lat, lng, text, type)

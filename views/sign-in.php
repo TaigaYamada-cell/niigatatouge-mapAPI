@@ -36,6 +36,10 @@
     <div style="text-align: center;">
         <a href="../controllers/sign-up.php" class="fw-bold" style="color: #35a8aa">アカウントを作成する</a>
     </div>
+    <p class="fw-light" style="text-align: center;">または</p>
+    <div style="text-align: center;">
+        <a href="<?php echo $sTwitterRequestUrl; ?>" class="fw-bold" style="color: #35a8aa">Twitterでログインする</a>
+    </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
