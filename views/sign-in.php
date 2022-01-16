@@ -10,7 +10,10 @@
 </head>
 <body>
 <div class="shadow-sm p-3 mb-5 bg-body rounded" style="color: #35a8aa">ログイン</div>
+
 <div class="container">
+    <a href="../controllers/map.php" class="fw-bold" style="color: #35a8aa; text-decoration: none; margin-left: 20px;">ホームに戻る</a>
+
     <div style="width: 100%; text-align: center;">
         <a href="../controllers/map.php"><img src="../img/logo.jpg" alt="logo" class="img-fluid rounded-circle w-25"></a> 
     </div>
