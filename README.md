@@ -16,6 +16,7 @@
 <li>PHP</li>
 <li>MySQL</li>
 <li>Google Maps API</li>
+<li>Twitter API-Oauth 2.0</li>
 <li>GitHub</li>
 </ul>
 <h3>機能一覧</h3>
@@ -23,7 +24,7 @@
 <li>マップ機能</li>
 <p>-投稿検索</p>
 <li>会員登録・ログイン機能</li>
-<p>-バリデーション機能</p>
+<p>-バリデーション機能<br>-twitterアカウントを利用したログイン</p>
 <li>ユーザー登録機能</li>
 <li>コメント投稿機能</li>
 <li>お問い合わせ機能</li>
