@@ -1,6 +1,7 @@
 <?php
 require_once "../models/map.php";
-//コメント表示
+//コメント取得、変数に格納
+//TODO:自動化
 $comments1 = getComment(1);
 $comments2 = getComment(2);
 $comments3 = getComment(3);

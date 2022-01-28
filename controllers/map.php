@@ -13,12 +13,12 @@ if($statement = getCluePost()){
   $cRows_json = json_encode($cRows); 
 }
 
-
+//検索キーワードを取得、スポット検索の関数を動かす
 $data = $_GET["search-title"];
 $row = search($data);
 $row_json = json_encode($row);
 
-
+//コメント処理
 if(isset($_POST["text"]) && isset($_POST["post_id"])){
 session_start();
 if(!isset($_SESSION["name"])){
