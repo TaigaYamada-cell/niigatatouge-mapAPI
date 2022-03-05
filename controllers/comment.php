@@ -29,3 +29,5 @@ if(isset($_POST["text"]) && isset($_POST["post_id"])){
     
 
 require_once "../views/comment.php";
+
+//マイクロフレーム：スリーむ、ルーメン

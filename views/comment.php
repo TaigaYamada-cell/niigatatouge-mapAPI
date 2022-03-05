@@ -72,6 +72,7 @@
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       <?php 
+      //テンプレートエンジンでXSSを防ぐ必要あり。マイクロフレームワークの集合体がフルスタックふれーうワーク
             for($i=0; $i<=count($comments3)-1; $i++){
               echo "<span class='author'><strong>".$comments3[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments3[$i]["text"]."</p><p class='date'>".$comments3[$i]["created_at"]."</p>";
             }
