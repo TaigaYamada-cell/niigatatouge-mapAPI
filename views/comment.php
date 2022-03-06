@@ -16,21 +16,24 @@
         </div>
         <hr>
     </header>
+
     <section class="container">
     <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        弥彦山スカイライン
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+    
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          弥彦山スカイライン
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
           <?php 
-            for($i=0; $i<=count($comments1)-1; $i++){
-              echo "<span class='author'><strong>".$comments1[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments1[$i]["text"]."</p><p class='date'>".$comments1[$i]["created_at"]."</p>";
+            for($i=0; $i<=count($comments1)-1; $i++){                                                                 ///////xss対策///////
+              echo "<span class='author'><strong>".$comments1[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".escape($comments1[$i]["text"])."</p><p class='date'>".$comments1[$i]["created_at"]."</p>";
             }
-        ?>
+          ?>
+       
         <form action="comment.php" method="post" class="form-group">
           <input type="hidden" name="post_id" value="1">
           <label for="text">コメント</label>
@@ -38,10 +41,15 @@
           <input type="submit" value="登録" class="btn btn-primary">
         </form>
         
+        </div>
       </div>
     </div>
+
   </div>
-  <div class="accordion-item">
+  <section>
+
+    
+<div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         八方台
@@ -51,7 +59,7 @@
       <div class="accordion-body">
       <?php 
               for($i=0; $i<=count($comments2)-1; $i++){
-                echo "<span class='author'><strong>".$comments2[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments2[$i]["text"]."</p><p class='date'>".$comments2[$i]["created_at"]."</p>";
+                echo "<span class='author'><strong>".$comments2[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".escape($comments2[$i]["text"])."</p><p class='date'>".$comments2[$i]["created_at"]."</p>";
               }
         ?>
         <form action="comment.php" method="post" class="form-group">
@@ -72,9 +80,9 @@
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       <?php 
-      //テンプレートエンジンでXSSを防ぐ必要あり。マイクロフレームワークの集合体がフルスタックふれーうワーク
+      //xss対策
             for($i=0; $i<=count($comments3)-1; $i++){
-              echo "<span class='author'><strong>".$comments3[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments3[$i]["text"]."</p><p class='date'>".$comments3[$i]["created_at"]."</p>";
+              echo "<span class='author'><strong>".$comments3[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".escape($comments3[$i]["text"])."</p><p class='date'>".$comments3[$i]["created_at"]."</p>";
             }
         ?>
         <form action="comment.php" method="post" class="form-group">
@@ -96,7 +104,7 @@
       <div class="accordion-body">
       <?php 
             for($i=0; $i<=count($comments4)-1; $i++){
-              echo "<span class='author'><strong>".$comments4[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments4[$i]["text"]."</p><p class='date'>".$comments4[$i]["created_at"]."</p>";
+              echo "<span class='author'><strong>".$comments4[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".escape($comments4[$i]["text"])."</p><p class='date'>".escape($comments4[$i]["created_at"])."</p>";
             }
         ?>
         <form action="comment.php" method="post" class="form-group">
@@ -118,7 +126,7 @@
       <div class="accordion-body">
       <?php 
             for($i=0; $i<=count($comments5)-1; $i++){
-              echo "<span class='author'><strong>".$comments5[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments5[$i]["text"]."</p><p class='date'>".$comments5[$i]["created_at"]."</p>";
+              echo "<span class='author'><strong>".$comments5[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".escape($comments5[$i]["text"])."</p><p class='date'>".escape($comments5[$i]["created_at"])."</p>";
             }
         ?>
         <form action="comment.php" method="post" class="form-group">
@@ -141,7 +149,7 @@
         <div class="container comments">
       <?php 
             for($i=0; $i<=count($comments6)-1; $i++){
-                echo "<span class='author'><strong>".$comments6[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".$comments6[$i]["text"]."</p><p class='date'>".$comments6[$i]["created_at"]."</p>";
+                echo "<span class='author'><strong>".$comments6[$i]["user_id"]."</strong>のコメント</span><p class='comment'>".escape($comments6[$i]["text"])."</p><p class='date'>".escape($comments6[$i]["created_at"])."</p>";
             }
         ?>
         </div>
@@ -155,7 +163,6 @@
     </div>
   </div>
 </div>
-    
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
